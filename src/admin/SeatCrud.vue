@@ -16,7 +16,6 @@
             <i class="el-icon-delete"></i>删除
           </div>
         </div>
-
       </Area>
     </el-card>
   </div>
@@ -52,6 +51,11 @@ export default {
       })
     },
     seatClick(index) {
+      //正在使用的座位无法操作
+      if (this.seatRows[index].state === 1 || this.seatRows[index].state === 2) {
+        this.seatRows[index].show = false
+        return
+      }
       this.sid = this.seatRows[index].sid
     },
     addSeat(type) {

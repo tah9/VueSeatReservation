@@ -1,6 +1,5 @@
 <template>
-  <div class="root">
-    <el-card style="margin-top: 10%;position: relative">
+    <el-card style="margin-top: calc(50% - 100px);overflow: scroll">
       <div slot="header" class="clearfix">
         <ToggleArea @changeArea="getSeatRows" ref="toggleArea" :area-rows="areaRows" v-if="areaRows"></ToggleArea>
         <HeadTip></HeadTip>
@@ -11,7 +10,6 @@
         </div>
       </Area>
     </el-card>
-  </div>
 </template>
 
 <script>
@@ -21,7 +19,7 @@ import HeadTip from "@/components/HeadTip";
 import ToggleArea from "@/components/ToggleArea";
 
 export default {
-  name: "SeatNumber",
+  name: "SeatMess",
   components: {ToggleArea, HeadTip, Area},
   data() {
     return {
@@ -64,12 +62,6 @@ export default {
 </script>
 
 <style scoped>
-.root {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
 
 
 </style>

@@ -24,22 +24,12 @@ export default {
     return {
       active: 0,
       tabs: [
-        {
-          name: '座位管理',
-          url: '/admin/seat/number'
-        }, {
-          name: '论坛管理',
-          url: '/admin/forum'
-        }, {
-          name: '公告管理',
-          url: '/admin/announce'
-        }, {
-          name: '学生管理',
-          url: '/admin/student'
-        }, {
-          name: '老师管理',
-          url: '/admin/teacher'
-        },
+        {name: '座位管理', url: '/admin/seat/number'},
+        {name: '论坛管理', url: '/admin/forum'},
+        {name: '公告管理', url: '/admin/announce'},
+        {name: '学生管理', url: '/admin/student'},
+        {name: '老师管理', url: '/admin/teacher'},
+        {name: '统计分析', url: '/admin/statistics'},
       ]
     }
   }

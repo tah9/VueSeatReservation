@@ -31,6 +31,18 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
+.btn {
+  position: fixed;
+  bottom: 54px;
+  border-radius: 40px;
+  line-height: 40px;
+  height: 40px;
+  margin: 1em 30px;
+  width: calc(100% - 60px);
+  background: #409eff;
+  color: white;
+  text-align: center;
+}
 
 .seatSelect::before {
   content: '';
@@ -42,6 +54,11 @@ body::-webkit-scrollbar {
   left: 6px;
 }
 
+.van-cell__title {
+  display: flex;
+  align-items: center;
+}
+
 .seatSelect::after {
   content: '';
   width: 2px;
@@ -51,6 +68,11 @@ body::-webkit-scrollbar {
   top: 6px;
   left: 12px;
 }
+
+.el-radio-button__orig-radio:checked + .el-radio-button__inner {
+  background-color: #67c23a !important;
+}
+
 .blankMenu > * {
   padding: 0 0.5em;
   height: 35px;

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div style="width: 100vw;height: 100vh;background-color: #78b3ef">
     <div class="login-box">
       <h2>图书馆座位预约</h2>
       <form>
         <div class="user-box">
           <input type="text" name="" required="" v-model="number">
-          <label>学号</label>
+          <label>学工号</label>
         </div>
         <div class="user-box">
           <input type="password" name="" required="" v-model="password">
@@ -34,7 +34,7 @@ export default {
   name: "Login",
   data() {
     return {
-      number: 123,
+      number: 999,
       password: '123456789',
     }
   },
@@ -43,29 +43,33 @@ export default {
       this.$router.replace({path: '/register'});
     },
     handleSubmit() {
-      request.post('/public/login',{
-        number:this.number,
-        password:this.password
-      }).then(res=>{
-        if (res.code===200){
+      if(this.password===''||this.number===''){
+        Toast.fail('请完整输入')
+        return
+      }
+      request.post('/public/login', {
+        number: this.number,
+        password: this.password
+      }).then(res => {
+        if (res.code === 200) {
           console.log(res);
           Toast('登陆成功')
-          localStorage.setItem('user',JSON.stringify(res.user))
-        }else{
+          localStorage.setItem('user', JSON.stringify(res.user));
+          if (res.user.type === 0) {
+            this.$router.replace('/student/forum')
+          } else if (res.user.type === 1) {
+            this.$router.replace('/Teacher/seat')
+          }
+        } else {
           Toast('账户或密码错误')
         }
       })
     },
   },
 }
-;
 </script>
 
-<style>
-body {
-  background: #507aa7;
-}
-
+<style scoped>
 .login-box {
   position: absolute;
   top: 50%;
@@ -73,9 +77,8 @@ body {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: rgba(75, 75, 75, .16);
+  background: #409eff;
   box-sizing: border-box;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .6);
   border-radius: 5px;
 }
 

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div style="width: 200vw;height: 200vh;background-color: #78b3ef">
     <div class="login-box">
       <h2>注册账号</h2>
       <form>
         <div class="user-box">
           <input type="number" name="" required="" v-model="number">
-          <label>学号</label>
+          <label>学工号</label>
         </div>
         <div class="user-box">
           <input type="text" name="" required="" v-model="username">
@@ -30,6 +30,13 @@
           <span></span>
           注册
         </a>
+        <a @click="$router.replace('/login')">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          登录
+        </a>
       </form>
     </div>
   </div>
@@ -51,11 +58,15 @@ export default {
   },
   methods: {
     handleSubmit() {
+      if (this.number===0||this.username===''||this.password===''){
+        Toast.fail('请完整输入')
+        return
+      }
       request.post('/public/register', {
         number: this.number,
         username: this.username,
         password: this.password,
-        type:this.type==='学生'?0:1
+        type: this.type === '学生' ? 0 : 1
       }).then(res => {
         Toast('注册成功')
         this.$router.replace('/login')
@@ -67,9 +78,7 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background: #507aa7;
-}
+
 
 .login-box {
   position: absolute;
@@ -78,9 +87,8 @@ body {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: rgba(75, 75, 75, .16);
+  background: #409eff;
   box-sizing: border-box;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .6);
   border-radius: 5px;
 }
 
@@ -130,15 +138,15 @@ body {
   border: 1px rgba(255, 255, 255, .3) solid;
   position: relative;
   display: inline-block;
-  padding: 10px 50px;
+  padding: 10px 100px;
   color: white;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
-  margin-top: 40px;
-  margin-left: calc(50% - 70px);
+  margin-top: 20px;
+  margin-left: calc(50% - 120px);
   letter-spacing: 4px
 }
 

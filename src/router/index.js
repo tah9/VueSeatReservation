@@ -39,11 +39,66 @@ const routes = [
             }, {
                 path: 'teacher',
                 component: () => import('../admin/TeacherManagement')
+            }, {
+                path: 'statistics',
+                component: () => import('../admin/Statistics')
             },
         ]
+    },
+    {
+        path: '/student',
+        component: () => import('../user/Main'),
+        children: [
+            {
+                path: 'forum',
+                component: () => import('../user/Forum')
+            },
+            {
+                path: 'seat',
+                component: () => import('../user/Seat'),
+                children: [
+                    {
+                        path: 'reservation',
+                        component: () => import('../user/Reservation')
+                    }, {
+                        path: 'toSigned',
+                        component: () => import('../user/ToSigned')
+                    }, {
+                        path: 'beUse',
+                        component: () => import('../user/BeUse')
+                    }
+                ]
+            }
+
+        ]
+    }
+    , {
+        path: '/LookStudentMess',
+        component: () => import('../teacher/StudentMess')
     }, {
-        path: '/StudentReservation',
-        component: () => import('../user/Reservation')
+        path: '/ScoreMess',
+        component: () => import('../user/ScoreMess')
+    }, {
+        path: '/PushArticle',
+        component: () => import('../user/PushArticle')
+    }, {
+        path: '/ForumInfo',
+        component: () => import('../user/ForumInfo')
+    }, {
+        path: '/Teacher',
+        component: () => import('../teacher/Main'),
+        children: [
+            {
+                path: 'seat',
+                component: () => import('../teacher/SeatMess')
+            }, {
+                path: 'reservation',
+                component: () => import('../teacher/ReservationMess')
+            }, {
+                path: 'score',
+                component: () => import('../teacher/ScoreManagement')
+            }
+        ]
     }
 ]
 
